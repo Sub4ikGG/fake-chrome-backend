@@ -1,8 +1,8 @@
 package ehea
 
-private const val ERROR_TAG = "[Error]:"
-private const val INFO_TAG = "[Info]:"
-private const val SECURITY_TAG = "[Security]:"
+private const val ERROR_TAG = "[Error]"
+private const val INFO_TAG = "[Info]"
+private const val SECURITY_TAG = "[Security]"
 
 fun printError(error: String) {
     println(
